@@ -44,3 +44,12 @@ correspondientes y un botón enviar. Asimismo, construir la vista del carrito do
 podrán ver los productos agregados e incorporar productos a comprar por su id de 
 producto. Esta aplicación de frontend debe enviar los requests get, post, put y delete al 
 servidor utilizando fetch y debe estar ofrecida en su espacio público.
+rencia: no incluir los node_modules
+2. En todos los casos, el diálogo entre el frontend y el backend debe ser en formato JSON. El 
+servidor no debe generar ninguna vista.
+3. En el caso de requerir una ruta no implementada en el servidor, este debe contestar un objeto 
+de error: ej { error : -2, descripcion: ruta 'x' método 'y' no implementada}
+4. La estructura de programación será ECMAScript, separada tres en módulos básicos (router, 
+lógica de negocio/api y persistencia ). Más adelante implementaremos el desarrollo en capas. 
+Utilizar preferentemente clases, constructores de variables let y const y arrow function.
+5. Realizar la prueba de funcionalidad completa en el ámbito local (puerto 8080) y en glitch.com

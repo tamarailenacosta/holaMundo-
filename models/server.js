@@ -1,7 +1,6 @@
 const express = require('express');
 
 //router
-const routerUsers = require('../routers/users.js');
 const routerProducts = require('../routers/products.js');
 const routerCart = require('../routers/cart.js');
 
@@ -13,11 +12,13 @@ class Server {
     constructor() {
 
         this.port = 8080
+        this.app = express()
 
         // function
         this.starting()
         this.middleware()
         this.routing()
+
 
     }
 
@@ -51,7 +52,6 @@ class Server {
 
         this.app.use('/api/productos', routerProducts)
         this.app.use('/api/cart', routerCart)
-        this.app.use('/api/users', routerUsers)
 
     }
 

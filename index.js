@@ -1,1 +1,3 @@
-const server = require('./models/server');
+const { Server } = require('./models/server');
+
+const app = new Server();

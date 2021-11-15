@@ -1,9 +1,9 @@
 const express = require('express');
 
 //router
-const router = require('./router/productos.js');
-
-
+const routerUsers = require('../routers/users.js');
+const routerProducts = require('../routers/products.js');
+const routerCart = require('../routers/cart.js');
 
 
 
@@ -49,7 +49,9 @@ class Server {
 
     routing = () => {
 
-        this.app.use('/api/productos', router)
+        this.app.use('/api/productos', routerProducts)
+        this.app.use('/api/cart', routerCart)
+        this.app.use('/api/users', routerUsers)
 
     }
 

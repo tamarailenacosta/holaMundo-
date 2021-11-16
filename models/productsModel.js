@@ -1,10 +1,18 @@
 const fs = require('fs');
 
-class Contenedor {
+class productsModels {
 
-    constructor() {
+    ////producto: { id, timestamp(producto), nombre, descripcion, código, foto (url), precio, stock }
+    constructor(archivo) {
 
-        this.ruta = './productos.txt';
+        this.ruta = archivo
+            //this.nombre = 'xxxx'
+            //this.description = descripcion
+            //this.codigo = codigo
+            //this.foto = url
+            //this.precio = 0
+            //this.stock = 0
+
     }
 
     //update un producto a traves del formulario.
@@ -127,4 +135,4 @@ const productos = {
     }
 
 }
-module.exports = { Contenedor }
+module.exports = { productsModels }

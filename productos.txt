@@ -1,0 +1,10 @@
+[
+  {
+    "title": "GOOGLE HOME",
+    "price": 3000,
+    "codigo": 4243424,
+    "foto": "asdasdsdasddsd",
+    "stock": 4,
+    "id": 3
+  }
+]

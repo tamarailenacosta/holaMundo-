@@ -4,9 +4,10 @@ const { Router } = require('express')
 
 const routerCart = Router()
 
-const { cartModel } = require('../models/cartModel')
+const { CartModel } = require('../../models/cartModel')
+const { admin } = require('../Admin')
 
-const data = new cartModel('../cart.txt')
+const data = new CartModel('../cart.txt')
 
 
 
@@ -60,6 +61,7 @@ routerCart.post('/:id/productos', async(req, resp) => {
     }
 
     try {
+
         let id = await data.save(newProduct)
             //res.redirect('/api/productos')
 

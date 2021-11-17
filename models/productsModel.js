@@ -1,17 +1,12 @@
 const fs = require('fs');
 
-class productsModels {
+class ProductsModels {
 
     ////producto: { id, timestamp(producto), nombre, descripcion, código, foto (url), precio, stock }
     constructor(archivo) {
 
-        this.ruta = archivo
-            //this.nombre = 'xxxx'
-            //this.description = descripcion
-            //this.codigo = codigo
-            //this.foto = url
-            //this.precio = 0
-            //this.stock = 0
+        this.ruta = './productos.txt'
+
 
     }
 
@@ -45,7 +40,7 @@ class productsModels {
             fs.promises.writeFile(this.ruta, JSON.stringify(arrayProducts), () => {
                 console.log(`Archivo ${this.ruta} escrito con éxito`);
             })
-            return nuevoId;
+            return producto.id;
         } catch (error) {
             console.log("Error en guardar el ID", error);
             throw error;
@@ -81,7 +76,7 @@ class productsModels {
     // Devuelve un Array con todos los objetos en el archivo.
     getAll = async() => {
         try {
-            const allproducts = await fs.promises.readFile(this.ruta, 'utf-8');
+            const allproducts = await fs.promises.readFile(this.ruta, 'utf-8')
             console.log("lectura de archivo exitosa");
             return JSON.parse(allproducts);
 
@@ -102,10 +97,15 @@ class productsModels {
     deleteById = async(ID) => {
 
         try {
-            let id = parseInt(ID)
+            let idProducto = parseInt(ID)
             const productos = await this.getAll();
-            const prods = productos.filter(p => p.id !== id);
-            await fs.promises.writeFile(this.ruta, JSON.stringify(prods, null, 2))
+            const indexId = productos.findIndex(({ id }) => id === idProducto);
+            if (indexId === -1) {
+                return false
+            }
+            const prods = productos.filter(p => p.id !== idProducto);
+            fs.promises.writeFile(this.ruta, JSON.stringify(prods, null, 2))
+            return true
         } catch (error) {
             throw error;
         }
@@ -121,18 +121,4 @@ class productsModels {
 
 }
 
-
-const productos = {
-    "name": "Billetera",
-    "description": "Billetera de cuero negro",
-    "reference": "REF-005",
-    "status": "inactive",
-    "inventory": {
-        "unit": "piece",
-        "availableQuantity": 150,
-        "unitCost": 560,
-        "initialQuantity": 320,
-    }
-
-}
-module.exports = { productsModels }
+module.exports = { ProductsModels }

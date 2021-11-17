@@ -1,8 +1,9 @@
 const express = require('express');
 
 //router
-const routerProducts = require('../routers/products.js');
-const routerCart = require('../routers/cart.js');
+const routerProducts = require('../src/routers/products');
+const routerCart = require('../src/routers/cart');
+
 
 
 

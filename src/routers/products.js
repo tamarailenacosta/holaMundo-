@@ -1,17 +1,19 @@
 // router base 'api/productos/'
 
-const { Router } = require('express')
+const { Router, response, urlencoded } = require('express')
 
 const routerProducts = Router()
 
-const { productsModel } = require('../models/productsModel');
+const { ProductsModels } = require('../../models/productsModel');
+const { isAdmin } = require('../Admin')
 
-const data = new productsModel('../productos.txt')
+
+const data = new ProductsModels('../productos.txt')
 
 
 //a. GET: '/:id?' - Me permite listar todos los productos disponibles ó un producto por su id
 //(disponible para usuarios y administradores) 
-routerProducts.get('/:id', async(req, res) => {
+routerProducts.get('/:id?', async(req, res) => {
     try {
         const id = req.params.id
         const product = await data.getById(id)
@@ -27,28 +29,33 @@ routerProducts.get('/:id', async(req, res) => {
 
 //b. POST: '/' -Para incorporar productos al listado (disponible para administradores) 
 
-routerProducts.post('/', upload.single('miArchivo'), async(req, res) => {
-    // req.file is the `avatar` file
-    // req.body will hold the text fields, if there were any
-    let file = req.file
-    let { title, price } = req.body
+//estructura del producto
+//this.nombre = 'xxxx'
+//this.description = descripcion
+//this.codigo = codigo
+//this.foto = url
+//this.precio = 0
+//this.stock = 0
+
+//ESTO ESTA TIRANDO UNHANDLED PROMISE REVISARLO//
+routerProducts.post('/', isAdmin, async(req, res) => {
+    let { title, price, stock, descripcion, codigo, url } = req.body
     let newProduct = {
         "title": title,
         "price": price,
-        "image": req.file
+        "descripcion": descripcion,
+        "codigo": codigo,
+        "foto": url,
+        "stock": stock
+
     }
-    if (!file) {
-        let error = new Error('Error subiendo archivo')
-        error.httpStatusCode = 400
-        throw new Error
-    }
+    console.log(newProduct)
     try {
         let id = await data.save(newProduct)
-            //res.redirect('/api/productos')
-
-
+        send.json(`el prodcuto ${id} fue guardado con éxito`)
     } catch (err) {
         throw new Error
+        send.json('error en guardar el archivo')
     }
 })
 
@@ -56,7 +63,7 @@ routerProducts.post('/', upload.single('miArchivo'), async(req, res) => {
 
 //c. PUT: '/:id' - Actualiza un producto por su id (disponible para administradores) 
 
-routerProducts.put("/:id", async(req, res) => {
+routerProducts.put("/:id", isAdmin, async(req, res) => {
     const updateProduct = req.body;
     const id = Number(req.params.id);
     updateProduct.id = id;
@@ -69,14 +76,16 @@ routerProducts.put("/:id", async(req, res) => {
 
 //d. DELETE: '/:id' - Borra un producto por su id (disponible para administradores) 
 
-// revisar que la funcion delete bt id tiene que retoranr objeto no encontrado si no esta el id
-routerProducts.delete('/:id', async(req, res) => {
+routerProducts.delete('/:id', isAdmin, async(req, res) => {
     try {
         const id = req.params.id
         const product = await data.deleteById(id)
+        if (!product) {
+            res.json("producto no encontrado")
+        }
         res.json(`el producto ${id} fue eliminanod con éxito!`)
     } catch (error) {
-        res.json(error, "producto no encontrado")
+        throw error
     }
 })
 

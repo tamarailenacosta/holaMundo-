@@ -1,0 +1,20 @@
+[
+  {
+    "id": 2,
+    "timestamp": 1637239544062,
+    "productos": {
+      "idProd": 12,
+      "title": "GOOGLE HOME",
+      "price": 3000
+    }
+  },
+  {
+    "id": 1,
+    "timestamp": 1637239544062,
+    "productos": {
+      "idProd": 12,
+      "title": "GOOGLE HOME",
+      "price": 3000
+    }
+  }
+]

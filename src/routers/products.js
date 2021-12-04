@@ -54,8 +54,9 @@ routerProducts.post('/', isAdmin, async(req, res) => {
         let id = await data.save(newProduct)
         send.json(`el prodcuto ${id} fue guardado con éxito`)
     } catch (err) {
-        throw new Error
         send.json('error en guardar el archivo')
+        throw err
+
     }
 })
 

@@ -1,4 +1,4 @@
-//El router base '/api/carrito' 
+//El router base '/api/cart' 
 
 const { Router } = require('express')
 

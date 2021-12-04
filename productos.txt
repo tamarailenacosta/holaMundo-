@@ -1,10 +1,1 @@
-[
-  {
-    "title": "GOOGLE HOME",
-    "price": 3000,
-    "codigo": 4243424,
-    "foto": "asdasdsdasddsd",
-    "stock": 4,
-    "id": 3
-  }
-]
+[{"title":"GOOGLE HOME","price":3000,"codigo":4243424,"foto":"asdasdsdasddsd","stock":4,"id":3},{"title":"Tamara","price":3000,"codigo":424,"stock":4,"id":2}]

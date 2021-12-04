@@ -4,6 +4,9 @@ const express = require('express');
 const routerProducts = require('../src/routers/products');
 const routerCart = require('../src/routers/cart');
 
+//DB
+const { MongoConnection } = require('../daos/config')
+
 
 
 
@@ -17,6 +20,7 @@ class Server {
 
         // function
         this.starting()
+            //this.dbconecction()
         this.middleware()
         this.routing()
 
@@ -35,8 +39,12 @@ class Server {
 
     }
 
-    middleware = () => {
 
+    dbconecction = async() => {
+        await MongoConnection()
+    }
+
+    middleware = () => {
 
         this.app.use(express.json())
         this.app.use(express.urlencoded({ extended: true }))

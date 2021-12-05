@@ -5,7 +5,7 @@ const routerProducts = require('../src/routers/products');
 const routerCart = require('../src/routers/cart');
 
 //DB
-const { MongoConnection } = require('../daos/config')
+const { MongoConnection } = require('../DB/config')
 
 
 
@@ -20,7 +20,7 @@ class Server {
 
         // function
         this.starting()
-            //this.dbconecction()
+        this.dbconecction()
         this.middleware()
         this.routing()
 

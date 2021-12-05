@@ -1,63 +1,60 @@
 // router base 'api/productos/'
-
 const { Router, response, urlencoded } = require('express')
-
 const routerProducts = Router()
 
 const { ProductsModels } = require('../../models/productsModel');
+const Producto = require('../../daos/product')
 const { isAdmin } = require('../Admin')
 
+// DAOS
+//const { ProductDAO } = require("../DAOS");
+//const productDAO = new ProductDAO();
 
 const data = new ProductsModels('../productos.txt')
 
 
-//a. GET: '/:id?' - Me permite listar todos los productos disponibles ó un producto por su id
+//a. GET: '/:id?' - Me permite listar un producto por su id
 //(disponible para usuarios y administradores) 
-routerProducts.get('/:id?', async(req, res) => {
+routerProducts.get('/:id', async(req, res) => {
     try {
-        const id = req.params.id
-        const product = await data.getById(id)
-        res.json(product)
-    } catch (error) {
-        res.send(error)
+        const { id } = req.params
+        const product = await Producto.find().where(id)
+        res.status(200).json({ product });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+        throw new Error
+    }
+
+})
+
+//Permite listar todos los productos disponibles
+//(disponible para usuarios y administradores) 
+routerProducts.get('/', async(req, res) => {
+    try {
+        const product = await Producto.find().limit(5);
+
+        res.status(200).json({ product });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+        throw new Error
     }
 
 })
 
 
-
-
 //b. POST: '/' -Para incorporar productos al listado (disponible para administradores) 
-
-//estructura del producto
-//this.nombre = 'xxxx'
-//this.description = descripcion
-//this.codigo = codigo
-//this.foto = url
-//this.precio = 0
-//this.stock = 0
-
-//ESTO ESTA TIRANDO UNHANDLED PROMISE REVISARLO//
 routerProducts.post('/', isAdmin, async(req, res) => {
-    let { title, price, stock, descripcion, codigo, url } = req.body
-    let newProduct = {
-        "title": title,
-        "price": price,
-        "descripcion": descripcion,
-        "codigo": codigo,
-        "foto": url,
-        "stock": stock
 
-    }
-    console.log(newProduct)
+    const newProduct = req.body;
+    const producto = new Producto(newProduct);
     try {
-        let id = await data.save(newProduct)
-        send.json(`el prodcuto ${id} fue guardado con éxito`)
+        await producto.save()
+        res.status(200).json({ newProduct });
     } catch (err) {
-        send.json('error en guardar el archivo')
-        throw err
-
+        res.status(500).json({ error: err.message });
+        throw new Error
     }
+
 })
 
 
@@ -84,9 +81,10 @@ routerProducts.delete('/:id', isAdmin, async(req, res) => {
         if (!product) {
             res.json("producto no encontrado")
         }
-        res.json(`el producto ${id} fue eliminanod con éxito!`)
-    } catch (error) {
-        throw error
+        res.status(200).json({ product });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+        throw new Error
     }
 })
 

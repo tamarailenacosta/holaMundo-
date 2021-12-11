@@ -80,7 +80,7 @@ routerProducts.delete('/:id', isAdmin, async(req, res) => {
     try {
         const { id } = req.params
         const product = await Producto.findByIdAndDelete(id)
-        res.status(200).json({ product, 'eliminado:' });
+        res.status(200).json(product, 'eliminado:');
     } catch (err) {
         res.status(500).json({ error: err.message });
         throw new Error

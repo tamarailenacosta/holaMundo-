@@ -10,9 +10,6 @@ const { isAdmin } = require('../Admin')
 //const { ProductDAO } = require("../DAOS");
 //const productDAO = new ProductDAO();
 
-const data = new ProductsModels('../productos.txt')
-
-
 //a. GET: '/:id?' - Me permite listar un producto por su id
 //(disponible para usuarios y administradores) 
 routerProducts.get('/:id', async(req, res) => {

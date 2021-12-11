@@ -5,37 +5,36 @@ const { Router } = require('express')
 const routerCart = Router()
 
 const { CartModel } = require('../../models/cartModel')
-const { admin } = require('../Admin')
+const { adminR } = require('../Admin')
 
-const data = new CartModel('./cart.txt')
+//Firebase
+const ContenedorFirebase = require('../../DB/ContenedorFirebase')
 
 
 
 //a. POST: '/' - Crea un carrito y devuelve su id. 
 routerCart.post('/', async(re, resp) => {
     try {
-        const idCart = await data.save()
-        resp.json(`El carrito id: ${idCart} se genero con exito`)
+        const body = re.body;
+        const cart = new ContenedorFirebase()
+        const idCart = await cart.save(body)
+        resp.status(200).json({ idCart })
     } catch (err) {
-        resp.json(`Hubo un erro no se pudo generar el carrito`)
-        throw err
+        res.status(500).json({ error: err.message });
+        throw new Error
     }
 })
 
 
 //b. DELETE: '/:id' - Vacía un carrito y lo elimina. 
 routerCart.delete('/:id', async(req, resp) => {
-    let check = false
-    const id = parseInt(req.params.id)
+    const id = req.params.id
     try {
-        check = await data.delete(id)
-        if (check) {
-            resp.json(`El carrito id: ${id} fue eliminado`)
-        } else {
-            resp.json(`El carrito id: ${id} NO se encontro`)
-        }
+        check = await ContenedorFirebase.deleteById(id)
+        resp.status(200).json({ check })
     } catch (err) {
-        throw err
+        res.status(500).json({ error: err.message });
+        throw new Error
     }
 })
 
@@ -44,19 +43,15 @@ routerCart.get('/:id/productos', async(req, resp) => {
     const idCart = req.params.id
     try {
         const mycart = await data.getById(idCart)
-        if (mycart == null) {
-            resp.json('no se encontro el carrito')
-        }
-        resp.json(mycart.productos)
-
+        resp.status(200).json({ mycart })
     } catch (err) {
-        throw err
+        res.status(500).json({ error: err.message });
+        throw new Error
     }
 })
 
 //d. POST: '/:id/productos' - Para incorporar productos al carrito por su id de producto 
 routerCart.post('/:id/productos', async(req, resp) => {
-
     const { price, title, qty } = req.body
     const idCart = parseInt(req.params.id)
     const newProduct = {
@@ -64,16 +59,14 @@ routerCart.post('/:id/productos', async(req, resp) => {
         "price": price,
         "qty": qty
     }
-
     try {
         const saved = await data.addProduct(newProduct, idCart)
         if (!saved) {
             resp.json(`eL ${idCart} no existe`)
         }
-        resp.json("el producto se guardo con exito")
-
+        resp.status(200).json({ product })
     } catch (err) {
-        resp.json("no se pudo guardar el producto")
+        res.status(500).json({ error: err.message });
         throw new Error
     }
 })
@@ -90,15 +83,13 @@ routerCart.delete('/:id/productos/:id_prod', async(req, resp) => {
             if (!deleted) {
                 resp.json("no se pudo eliminar el producto")
             } else {
-                resp.json(mycart.productos, "producto eliminado")
+                resp.json(mycart, "producto eliminado")
             }
-
         }
-        resp.json('no se encontro el carrito')
-
-
+        res.status(200).json({ mycart })
     } catch (err) {
-        throw err
+        res.status(500).json({ error: err.message });
+        throw new Error
     }
 })
 

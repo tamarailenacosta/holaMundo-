@@ -18,8 +18,8 @@ const data = new ProductsModels('../productos.txt')
 routerProducts.get('/:id', async(req, res) => {
     try {
         const { id } = req.params
-        const product = await Producto.find().where(id)
-        res.status(200).json({ product });
+        const product = await Producto.findById(id)
+        res.status(200).json({ product })
     } catch (err) {
         res.status(500).json({ error: err.message });
         throw new Error
@@ -62,26 +62,25 @@ routerProducts.post('/', isAdmin, async(req, res) => {
 //c. PUT: '/:id' - Actualiza un producto por su id (disponible para administradores) 
 
 routerProducts.put("/:id", isAdmin, async(req, res) => {
-    const updateProduct = req.body;
-    const id = Number(req.params.id);
-    updateProduct.id = id;
-    const updating = await data.update(id, updateProduct);
-    if (updating === null) return res.send({ error: "cannot find product" });
-    res.send({
-        message: "product updated"
-    });
+    const id = req.params.id;
+    const body = req.body;
+
+    try {
+        const udpating = await Producto.findByIdAndUpdate(id, body)
+        res.status(200).json({ udpating });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+        throw new Error
+    }
 });
 
 //d. DELETE: '/:id' - Borra un producto por su id (disponible para administradores) 
 
 routerProducts.delete('/:id', isAdmin, async(req, res) => {
     try {
-        const id = req.params.id
-        const product = await data.deleteById(id)
-        if (!product) {
-            res.json("producto no encontrado")
-        }
-        res.status(200).json({ product });
+        const { id } = req.params
+        const product = await Producto.findByIdAndDelete(id)
+        res.status(200).json({ product, 'eliminado:' });
     } catch (err) {
         res.status(500).json({ error: err.message });
         throw new Error

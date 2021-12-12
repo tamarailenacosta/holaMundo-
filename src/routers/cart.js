@@ -18,9 +18,9 @@ routerCart.post('/', async(re, resp) => {
         const body = re.body;
         const cart = new ContenedorFirebase()
         const idCart = await cart.save(body)
-        resp.status(200).json({ idCart })
+        re.status(200).json({ idCart })
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        re.status(500).json({ error: err.message });
         throw new Error
     }
 })
@@ -50,7 +50,7 @@ routerCart.get('/:id/productos', async(req, resp) => {
     }
 })
 
-//d. POST: '/:id/productos' - Para incorporar productos al carrito por su id de producto 
+//d. POST: '/:id/productos' - Para incorporar productos al carrito por su id de carrito ( o de producto?) 
 routerCart.post('/:id/productos', async(req, resp) => {
     const { price, title, qty } = req.body
     const idCart = parseInt(req.params.id)

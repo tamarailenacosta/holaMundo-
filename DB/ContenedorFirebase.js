@@ -7,37 +7,42 @@ admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 });
 
-const db = admin.firestore();
 
 class ContenedorFirebase {
 
     constructor() {
-        this.coleccion = db.collection('carrito')
+
+        this.db = admin.firestore()
+        this.coleccionCarrito = this.db.collection('carrito')
         console.log('Base Firebase conectada!')
     }
 
-    //c. GET: '/:id/productos' - Me permite listar todos los productos guardados en el carrito 
-    async getAll(id) {
-
-        const cart = db.collection('cities').doc('SF');
-        const doc = await cityRef.get();
-        if (!doc.exists) {
-            console.log('No such document!');
-        } else {
-            console.log('Document data:', doc.data());
+    async getById(id) {
+        try {
+            const doc = await this.query.doc(id).get();
+            return doc.data();
+        } catch (error) {
+            console.log("Hubo un error obteniendo un item: ", error);
         }
-
-
     }
 
-    async getById() {
-
+    //c. GET: '/:id/productos' - Me permite listar todos los productos guardados en el carrito 
+    async getAll() {
+        try {
+            const snapshot = await this.query.get();
+            return snapshot.docs.map(doc => doc.data());
+        } catch (error) {
+            console.log("Hubo un error obteniendo todos los items: ", error);
+        }
     }
 
     //a. POST: '/' - Crea un carrito y devuelve su id.
-    async save(nuevoElem) {
+    async save(data) {
 
+        const doc = await this.coleccionCarrito.doc('new-city-id').set(data);
+        console.log(doc)
     }
+
 
     //c. PUT: '/:id' - Actualiza un producto por su id (disponible para administradores) 
     async update(nuevoElem) {

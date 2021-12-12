@@ -6,9 +6,6 @@ const { ProductsModels } = require('../../models/productsModel');
 const Producto = require('../../daos/product')
 const { isAdmin } = require('../Admin')
 
-// DAOS
-//const { ProductDAO } = require("../DAOS");
-//const productDAO = new ProductDAO();
 
 //a. GET: '/:id?' - Me permite listar un producto por su id
 //(disponible para usuarios y administradores) 

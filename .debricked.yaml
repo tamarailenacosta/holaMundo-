@@ -1,3 +1,3 @@
 slow_scan: false
-skip_scan: false
+skip_scan: true
 excluded_directories: ['DB']

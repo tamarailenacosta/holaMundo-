@@ -1,9 +1,10 @@
-
-os: ubuntu
 language: node_js
 node_js: 
   - "17"
   - "16"
   - "15"
+github_token: $GITHUB_TOKEN
+script: 
+  - "npm run build"
 deploy:
  - skip_cleanup: true

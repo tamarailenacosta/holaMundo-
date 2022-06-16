@@ -1,6 +1,8 @@
 
 language: node_js
 node_js: 
-  - "17.0.35"
+  - "17"
+  - "16"
+  - "15"
 deploy:
  - skip_cleanup: true

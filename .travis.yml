@@ -3,10 +3,12 @@ node_js:
   - "12"
 env:
   - DEBRICKED_TOKEN=863916aa829012492dc293863aaa026fb734250bf3f43fd5
+  - COMMIT=cc2745072e9ac5f8262e4d3439a35476e09c1968
+  - REPOSITORY=holaMundo-
 services:
   - docker
 before_install:
 - docker pull debricked/debricked-cli
 script:
-  - docker run -it --rm -v $PWD:/data debricked/debricked-cli debricked:scan USERNAME="" PASSWORD=DEBRICKED_TOKEN holaMundo- cc2745072e9ac5f8262e4d3439a35476e09c1968 null cli
+  - docker run -it --rm -v $PWD:/data debricked/debricked-cli debricked:scan username="" password=DEBRICKED_TOKEN repository_name=REPOSITORY  commit_name=COMMIT null cli
 

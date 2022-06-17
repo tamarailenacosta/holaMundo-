@@ -10,6 +10,6 @@ services:
 before_install:
 - docker pull debricked/debricked-cli
 script:
-  - docker run -it --rm -v $PWD:/data debricked/debricked-cli debricked:scan USERNAME=tamara.costa@debricked.com GEWTqjcVY5b6gdowrm4Fsa9V3GWwJYzhB holaMundo- cc2745072e9ac5f8262e4d3439a35476e09c1968 null cli
+  - docker run -it --rm -v $PWD:/data debricked/debricked-cli debricked:scan tamara.acosta@debricked.com GEWTqjcVY5b6gdowrm4Fsa9V3GWwJYzhB holaMundo- cc2745072e9ac5f8262e4d3439a35476e09c1968 null cli
   #- docker run -it --rm -v $PWD:/data debricked/debricked-cli debricked:scan USERNAME="" PASSWORD=DEBRICKED_TOKEN repository_name=REPOSITORY  commit_name=COMMIT null cli
 

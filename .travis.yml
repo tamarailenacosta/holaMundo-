@@ -3,7 +3,6 @@ node_js:
   - "12"
 env:
   - DEBRICKED_TOKEN=863916aa829012492dc293863aaa026fb734250bf3f43fd5
-  tamara.acosta@debricked.com
   - COMMIT=cc2745072e9ac5f8262e4d3439a35476e09c1968
   - REPOSITORY=holaMundo-
 services:

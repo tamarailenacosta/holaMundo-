@@ -9,5 +9,5 @@ services:
 before_install:
 - docker pull debricked/debricked-cli
 script:
-  - docker run -it --rm -v $PWD:/data debricked/debricked-cli debricked:scan  holaMundo- cc2745072e9ac5f8262e4d3439a35476e09c1968 null cli
+  - docker run -it --rm -v $PWD:/data debricked/debricked-cli debricked:scan -e USERNAME=$USERNAME -e PASSWORD=$PASSWORD holaMundo- cc2745072e9ac5f8262e4d3439a35476e09c1968 null cli
 

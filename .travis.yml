@@ -1,10 +1,13 @@
 language: node_js
 node_js: 
-  - "12"  
+  - "12"
+env:
+  - USERNAME=tamara.acosta@debricked.com
+  - PASSWORD=GEWTqjcVY5b6gdowrm4Fsa9V3GWwJYzhB
 services:
   - docker
 before_install:
 - docker pull debricked/debricked-cli
 script:
-  - docker run -it --rm -v $PWD:/data debricked/debricked-cli debricked:scan tamara.acosta@debricked.com GEWTqjcVY5b6gdowrm4Fsa9V3GWwJYzhB holaMundo- cc2745072e9ac5f8262e4d3439a35476e09c1968 null cli
+  - docker run -it --rm -v $PWD:/data debricked/debricked-cli debricked:scan  holaMundo- cc2745072e9ac5f8262e4d3439a35476e09c1968 null cli
 

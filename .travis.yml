@@ -10,5 +10,5 @@ services:
 before_install:
 - docker pull debricked/debricked-cli
 script:
-  - docker run -it --rm -v $PWD:/data debricked/debricked-cli debricked:scan username="" password=DEBRICKED_TOKEN repository_name=REPOSITORY  commit_name=COMMIT null cli
+  - docker run -it --rm -v $PWD:/data debricked/debricked-cli debricked:scan USERNAME="" PASSWORD=DEBRICKED_TOKEN repository_name=REPOSITORY  commit_name=COMMIT null cli
 

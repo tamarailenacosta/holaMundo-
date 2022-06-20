@@ -4,7 +4,7 @@ node_js:
 services:
   - docker
 before_install:
-- docker pull debricked/debricked-cli
+  - docker pull debricked/debricked-cli
 script:
   - docker run -it --rm -v $PWD:/data debricked/debricked-cli debricked:scan USERNAME="" ${DEBRICKED_TOKEN} ${REPOSITORY}  ${COMMIT} null cli
 

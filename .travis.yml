@@ -8,7 +8,7 @@ install:
 #install: skip
 script: | 
   env > env.list
-   docker run --./env.list --rm -v $PWD:/data debricked/debricked-cli debricked:scan
+   docker run -v $PWD:/data --env-file ./env.list debricked/debricked-cli debricked:scan
   env:
     USERNAME: ""
     DEBRICKED_TOKEN: $(DEBRICKED_TOKEN)

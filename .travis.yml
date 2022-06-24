@@ -10,7 +10,6 @@ script: |
   env > env.list
    docker run -v $PWD:/data --env-file ./env.list debricked/debricked-cli debricked:scan
   env:
-    USERNAME: ""
     DEBRICKED_TOKEN: $(DEBRICKED_TOKEN)
     repository_name: ${REPOSITORY}
     commit_name: ${COMMIT}

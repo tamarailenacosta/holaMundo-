@@ -1,6 +1,16 @@
 language: node_js
 node_js: 
   - "stable"
-
-
-
+services:
+  - docker
+install:
+- docker pull debricked/debricked-cli
+#install: skip
+script: env > env.list
+  - docker run -it --rm -v  -e ./env.list $PWD:/data debricked/debricked-cli debricked:scan null cli
+     env:
+       - USERNAME: ""
+       - DEBRICKED_TOKEN: $(DEBRICKED_TOKEN)
+       - repository_name: ${REPOSITORY}
+       - commit_name: ${COMMIT}
+#docker run -it --rm -v $PWD:/data debricked/debricked-cli debricked:scan USERNAME="" PASSWORD=DEBRICKED_TOKEN repository_name=REPOSITORY  commit_name=COMMIT null cli

@@ -2,11 +2,14 @@ arch: arm64
 services:
 - docker
 install: skip
-script: | 
-  env > env.list
-   docker run -v $PWD:/data --env-file ./env.list debricked/debricked-scan
-  env:
-    DEBRICKED_TOKEN: ${DEBRICKED_TOKEN}
-    repository_name: ${REPOSITORY}
-    commit_name: ${COMMIT}
+jobs:
+  include:
+    - stage: test
+      env:
+      - DEBRICKED_TOKEN: ${DEBRICKED_TOKEN}
+      - repository_name: ${REPOSITORY}
+      - commit_name: ${COMMIT}
+      script: | 
+        env > env.list
+        docker run -v $PWD:/data --env-file ./env.list debricked/debricked-scan
 #docker run -it --rm -v $PWD:/data debricked/debricked-cli debricked:scan USERNAME="" PASSWORD=DEBRICKED_TOKEN repository_name=REPOSITORY  commit_name=COMMIT null cli

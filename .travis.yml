@@ -4,14 +4,12 @@ services:
 install: skip
 jobs:
   include:
-    - stage: test
+    - stage: debricked/debricked-scan
       env:
       - DEBRICKED_TOKEN: ${DEBRICKED_TOKEN}
       - repository_name: ${REPOSITORY}
       - commit_name: ${COMMIT}
-      script: | 
-        env > env.list
-        docker run -it --rm -v $PWD:/data debricked/debricked-cli debricked:scan USERNAME="" PASSWORD=DEBRICKED_TOKEN repository_name=REPOSITORY  commit_name=COMMIT null cli
+      script: docker run -it --rm -v $PWD:/data debricked/debricked-scan USERNAME="" PASSWORD=DEBRICKED_TOKEN repository_name=REPOSITORY  commit_name=COMMIT null cli
     
 #docker run -v $PWD:/data --env-file ./env.list debricked/debricked-scan
 #docker run -it --rm -v $PWD:/data debricked/debricked-cli debricked:scan USERNAME="" PASSWORD=DEBRICKED_TOKEN repository_name=REPOSITORY  commit_name=COMMIT null cli

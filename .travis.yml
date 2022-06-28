@@ -1,6 +1,4 @@
-language: node_js
-node_js: 
-- "12"
+arch: arm64
 services:
 - docker
 install: skip

@@ -3,12 +3,10 @@ node_js:
 - "12"
 services:
 - docker
-install:
-- docker pull debricked/debricked-cli
-#install: skip
+install: skip
 script: | 
   env > env.list
-   docker run -v $PWD:/data --env-file ./env.list debricked/debricked-cli debricked:scan
+   docker run -v $PWD:/data --env-file ./env.list debricked:scan
   env:
     DEBRICKED_TOKEN: ${DEBRICKED_TOKEN}
     repository_name: ${REPOSITORY}

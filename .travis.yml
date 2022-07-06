@@ -10,6 +10,6 @@ jobs:
       -  "null"
       -  "cli"
      script: env > env.list |
-        docker run -it --rm -v  -e ./env.list $PWD:/data debricked:scan
+        docker run -v $HOME:$HOME --env-file ./env.list $PWD:/data debricked:scan
         
       

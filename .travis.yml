@@ -1,16 +1,12 @@
-language: node_js
-node_js: 
-  - 12
-services:
-  - docker
-install: skip
 jobs:
    include:
-   -  script: env > env.list
+   -  stage: "Debricked-scan"
+      env:
+      - USERNAME: ""
+      - DEBRICKED_TOKEN: $(DEBRICKED_TOKEN)
+      - "TRAVIS_REPO_SLUG"
+      - "TRAVIS_COMMIT"
+      script: env > env.list
         docker run -it --rm -v  -e ./env.list $PWD:/data debricked:scan null cli
-        env:
-        - USERNAME: ""
-        - DEBRICKED_TOKEN: $(DEBRICKED_TOKEN)
-        - "TRAVIS_REPO_SLUG"
-        - "TRAVIS_COMMIT"
+        
       

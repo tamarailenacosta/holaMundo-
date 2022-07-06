@@ -6,9 +6,9 @@ jobs:
       -  USERNAME: ""
       -  DEBRICKED_TOKEN: $(DEBRICKED_TOKEN)
       -  "TRAVIS_REPO_SLUG"
-      #-  "TRAVIS_COMMIT"
-      #-  "null cli"
-     script: env > env.list
+      -  "TRAVIS_COMMIT"
+      -  "null cli"
+     script: env > env.list |
         docker run -it --rm -v  -e ./env.list $PWD:/data debricked:scan
         
       

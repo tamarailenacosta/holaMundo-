@@ -33,6 +33,4 @@ const productSchema = new Schema({
     },
 
 });
-
-
 module.exports = model('Producto', productSchema);

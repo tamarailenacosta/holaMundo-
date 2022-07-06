@@ -7,10 +7,11 @@ install: skip
 jobs:
    include:
      - stage: "Debricked-scan"
-       script: env > env.list
-        docker run -it --rm -v  -e ./env.list $PWD:/data debricked:scan null cli
-        env:
+         script: env > env.list
+          docker run -it --rm -v  -e ./env.list $PWD:/data debricked:scan null cli
+       env:
           USERNAME: ""
           DEBRICKED_TOKEN: $(DEBRICKED_TOKEN)
           "TRAVIS_REPO_SLUG"
           "TRAVIS_COMMIT"
+      

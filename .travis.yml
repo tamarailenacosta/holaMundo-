@@ -1,8 +1,6 @@
 jobs:
    include:
    - stage: Debricked
-      install: skip
-      
       script: env > env.list
         docker run -it --rm -v  -e ./env.list $PWD:/data debricked:scan
       env:

@@ -2,13 +2,13 @@ jobs:
    include:
    - stage: Debricked
      #install: skip
-     env:
-      -  USERNAME: ""
-      -  DEBRICKED_TOKEN: $(DEBRICKED_TOKEN)
-      -  "TRAVIS_REPO_SLUG"
-      -  "TRAVIS_COMMIT"
-      -  "null"
-      -  "cli"
+     #env:
+      #-  USERNAME: ""
+      #-  DEBRICKED_TOKEN: ${DEBRICKED_TOKEN}
+      #-  "TRAVIS_REPO_SLUG"
+      #-  "TRAVIS_COMMIT"
+      #-  "null"
+      #-  "cli"
      script:
         docker run -it --rm -v $PWD:/data debricked/debricked-cli debricked:scan "" ${DEBRICKED_TOKEN} ${REPOSITORY} ${COMMIT} null cli
         #  - docker run -it --rm -v $PWD:/data debricked/debricked-cli debricked:scan "" ${DEBRICKED_TOKEN} ${REPOSITORY} ${COMMIT} null cli

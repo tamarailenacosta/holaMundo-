@@ -1,10 +1,10 @@
 language: node_js
 services: docker
-branches: '*'
 jobs:
    include:
    - stage: Debricked-scan
-     #install: skip
+     on:
+       branch: master
      script: docker run
        -v $HOME:$HOME -e DEBRICKED_TOKEN=${DEBRICKED_TOKEN} debricked/debricked-scan:latest 
     # docker run -it --rm -v $PWD:/data debricked/debricked-cli debricked:scan "" ${DEBRICKED_TOKEN} ${REPOSITORY} ${COMMIT} null cli

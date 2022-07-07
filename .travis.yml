@@ -3,7 +3,7 @@ jobs:
    - stage: Debricked
      #install: skip
      script:
-       docker run -v $HOME:$HOME -e $DEBRICKED_TOKEN debricked/debricked-scan:latest 
+       docker run -v $HOME:$HOME -e $DEBRICKED_TOKEN=${DEBRICKED_TOKEN} debricked/debricked-scan:latest 
     # docker run -it --rm -v $PWD:/data debricked/debricked-cli debricked:scan "" ${DEBRICKED_TOKEN} ${REPOSITORY} ${COMMIT} null cli
 
       

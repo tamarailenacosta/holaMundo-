@@ -9,8 +9,11 @@ jobs:
       #-  "TRAVIS_COMMIT"
       #-  "null"
       #-  "cli"
-     script:
-        docker run -v $HOME:$HOME debricked/debricked-scan:latest "" ${DEBRICKED_TOKEN} ${TRAVIS_REPO_SLUG} ${TRAVIS_COMMIT} null cli
-        #  - docker run -it --rm -v $PWD:/data debricked/debricked-cli debricked:scan "" ${DEBRICKED_TOKEN} ${REPOSITORY} ${COMMIT} null cli
+     script: |
+        env > env.list
+        docker run -v $HOME:$HOME --env-file ./env.list debricked/debricked-scan:latest
+     env:
+     -  ${DEBRICKED_TOKEN}
+    # docker run -it --rm -v $PWD:/data debricked/debricked-cli debricked:scan "" ${DEBRICKED_TOKEN} ${REPOSITORY} ${COMMIT} null cli
 
       

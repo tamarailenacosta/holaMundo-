@@ -1,3 +1,11 @@
+language: rust
+services: docker
+branches:
+  only:
+    - master
+# Install tools for running tests
+install:
+  - skip
 jobs:
    include:
    - stage: Debricked

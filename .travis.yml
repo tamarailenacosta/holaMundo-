@@ -6,7 +6,7 @@ jobs:
      on:
        branch: master
      script: docker run
-       -v $HOME:$HOME debricked/debricked-scan:latest  
+       -v $HOME:$HOME -e env debricked/debricked-scan:latest  
      env: DEBRICKED_TOKEN=${DEBRICKED_TOKEN} 
       # docker run -it --rm -v $PWD:/data debricked/debricked-cli debricked:scan "" ${DEBRICKED_TOKEN} ${REPOSITORY} ${COMMIT} null cli
 

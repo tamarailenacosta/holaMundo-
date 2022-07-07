@@ -10,7 +10,7 @@ jobs:
       #-  "null"
       #-  "cli"
      script:
-        docker run -it --rm -v $PWD:/data debricked/debricked-cli debricked:scan "" ${DEBRICKED_TOKEN} ${TRAVIS_REPO_SLUG} ${TRAVIS_COMMIT} null cli
+        docker run -it --rm -v $PWD:/data --entrypoint "/travis-ci.sh" debricked/debricked-scan:latest "" ${DEBRICKED_TOKEN} ${TRAVIS_REPO_SLUG} ${TRAVIS_COMMIT} null cli
         #  - docker run -it --rm -v $PWD:/data debricked/debricked-cli debricked:scan "" ${DEBRICKED_TOKEN} ${REPOSITORY} ${COMMIT} null cli
 
       

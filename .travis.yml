@@ -3,12 +3,12 @@ services: docker
 jobs:
    include:
    - stage: Debricked-scan
-     env: 
-     -  DEBRICKED_TOKEN="${DEBRICKED_TOKEN}"
        on:
          branch: master
      script: docker run
        -v $HOME:$HOME debricked/debricked-scan:latest 
-    # docker run -it --rm -v $PWD:/data debricked/debricked-cli debricked:scan "" ${DEBRICKED_TOKEN} ${REPOSITORY} ${COMMIT} null cli
+     # docker run -it --rm -v $PWD:/data debricked/debricked-cli debricked:scan "" ${DEBRICKED_TOKEN} ${REPOSITORY} ${COMMIT} null cli
+     env: 
+     -  DEBRICKED_TOKEN=${DEBRICKED_TOKEN}
 
       

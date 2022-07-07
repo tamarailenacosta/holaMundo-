@@ -1,11 +1,9 @@
-language: rust
+language: node_js
 services: docker
-branches:
-  only:
-    - master
+branches: '*'
 jobs:
    include:
-   - stage: Debricked
+   - stage: Debricked-scan
      #install: skip
      script: docker run
        -v $HOME:$HOME -e DEBRICKED_TOKEN=${DEBRICKED_TOKEN} debricked/debricked-scan:latest 

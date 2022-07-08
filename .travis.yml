@@ -6,8 +6,9 @@ jobs:
         - stage: Debricked-scan
           on:
               branch: master
-          script:
-            docker run -it --rm -v $PWD:/data viktigpetterr/travis-scan "" ${DEBRICKED_TOKEN} ${TRAVIS_REPO_SLUG} ${TRAVIS_COMMIT} null cli
+          script: env > env.list && docker run -v $HOME:$HOME --env-file env.list --entrypoint "/travis-ci.sh" viktigpetterr/travis-scan
+          env:
+          -  DEBRICKED_TOKEN: ${DEBRICKED_TOKEN}
             #docker run -it --rm -v $PWD:/data --entrypoint "/travis-ci.sh" viktigpetterr/travis-scan "" ${DEBRICKED_TOKEN} ${TRAVIS_REPO_SLUG} ${TRAVIS_COMMIT} null cli
           
       

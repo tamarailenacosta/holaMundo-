@@ -9,7 +9,7 @@ jobs:
           script: |
               env > env.list
               docker run -v $HOME:$HOME --env-file env.list --entrypoint "/travis-ci.sh" viktigpetterr/travis-scan
-     env: 
-     -  DEBRICKED_TOKEN: ${DEBRICKED_TOKEN}
+          env: 
+          -  DEBRICKED_TOKEN: ${DEBRICKED_TOKEN}
      #-  COMMIT=${TRAVIS_COMMIT} 
       

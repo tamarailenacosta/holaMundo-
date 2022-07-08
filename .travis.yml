@@ -8,7 +8,7 @@ jobs:
        branch: master
      #before_script: docker run -it -e REPOSITORY=${TRAVIS_REPO_SLUG} -e COMMIT=${TRAVIS_COMMIT} 
      script: docker run
-       -v $HOME:$HOME -e DEBRICKED_TOKEN=${DEBRICKED_TOKEN} debricked/debricked-scan:latest
+       -v $HOME:$HOME -e DEBRICKED_TOKEN=${DEBRICKED_TOKEN} viktigpetterr/travis-scan
      # docker run -it --rm -v $PWD:/data debricked/debricked-cli debricked:scan "" ${DEBRICKED_TOKEN} ${REPOSITORY} ${COMMIT} null cli
      #env: 
      #-  REPOSITORY=${TRAVIS_REPO_SLUG}

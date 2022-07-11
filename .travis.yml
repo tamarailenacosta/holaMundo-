@@ -7,6 +7,6 @@ jobs:
           on:
             branch: master
           script: # docker run -e DEBRICKED_TOKEN=${DEBRICKED_TOKEN} -e REPOSITORY=${TRAVIS_REPO_SLUG} --entrypoint "/travis-ci.sh" viktigpetterr/travis-scan
-          docker run -it --rm -v $PWD:/data  debricked/debricked-scan "" ${DEBRICKED_TOKEN} ${TRAVIS_REPO_SLUG} ${TRAVIS_COMMIT} null cli
+            docker run -it --rm -v $PWD:/data  debricked/debricked-scan "" ${DEBRICKED_TOKEN} ${TRAVIS_REPO_SLUG} ${TRAVIS_COMMIT} null cli
           
       

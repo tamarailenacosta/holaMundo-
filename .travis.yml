@@ -1,12 +1,12 @@
 language: node_js
 services: docker
-install: skip
+#install: skip
 jobs:
     include:
         - stage: Debricked-scan
           on:
             branch: master
-          script: docker run -v $PWD:/data -e DEBRICKED_TOKEN=${DEBRICKED_TOKEN} -e REPOSITORY=${TRAVIS_REPO_SLUG} --entrypoint "/travis-ci.sh" viktigpetterr/travis-scan
+          script: docker run -it -rm -v $PWD:/data -e DEBRICKED_TOKEN=${DEBRICKED_TOKEN} -e REPOSITORY=${TRAVIS_REPO_SLUG} --entrypoint "/travis-ci.sh" viktigpetterr/travis-scan
           #docker run -it --rm -v $PWD:/data --entrypoint "/travis-ci.sh" viktigpetterr/travis-scan "" ${DEBRICKED_TOKEN} ${TRAVIS_REPO_SLUG} ${TRAVIS_COMMIT} null cli
           
       

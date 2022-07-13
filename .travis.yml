@@ -1,6 +1,7 @@
 language: node_js
 services: docker
-env: $DEBRICKED_TOKEN
+env: 
+-  DEBRICKED_TOKEN=$DEBRICKED_TOKEN
 jobs:
     include:
         - stage: Debricked-scan

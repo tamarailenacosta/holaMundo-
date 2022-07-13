@@ -10,11 +10,7 @@ jobs:
           #script: docker run -e DEBRICKED_TOKEN=${DEBRICKED_TOKEN} -e TRAVIS_REPO_SLUG=${REPOSITORY} -e TRAVIS_BRANCH="master"
             #-e TRAVIS_COMMIT=${COMMIT} -e TRAVIS_BUILD_DIR="/repo" -v $(pwd):/repo --entrypoint "/travis-ci.sh" viktigpetterr/travis-scan
           script: 
-          -  echo $TRAVIS_COMMIT
-          -  echo $TRAVIS_TAG
-          -  echo $TRAVIS_BRANCH
-          -  echo $TRAVIS_BUILD_NUMBER
-          -  echo $TRAVIS_REPO_SLUG
-          -  echo $DEBRICKED_TOKEN
+          env:
+          -  DEBRICKED_TOKEN=${DEBRICKED_TOKEN}
           
           

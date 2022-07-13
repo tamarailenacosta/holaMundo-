@@ -7,7 +7,5 @@ jobs:
           on:
             branch: master
           #script: docker run -e DEBRICKED_TOKEN=${DEBRICKED_TOKEN} -e TRAVIS_REPO_SLUG=${REPOSITORY} -e TRAVIS_BRANCH="master" -e TRAVIS_COMMIT=${COMMIT} -e TRAVIS_BUILD_DIR="/repo" -v $(pwd):/repo 
-          script: docker run --env -v $(pwd):/repo 
-            --entrypoint "/travis-ci.sh" viktigpetterr/travis-scan
-          env: DEBRICKED_TOKEN=${DEBRICKED_TOKEN} TRAVIS_REPO_SLUG=${REPOSITORY} TRAVIS_BRANCH="master" TRAVIS_COMMIT=${COMMIT} TRAVIS_BUILD_DIR="/repo"
+          script: echo env
           

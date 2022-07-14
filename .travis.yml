@@ -7,9 +7,9 @@ jobs:
             branch: master
           env:
           -  DEBRICKED_TOKEN=${DEBRICKED_TOKEN}
-          before_install: env > .env
+          before_install: env > file.env
           install: skip
-          script: docker run -v $HOME:$HOME --env-file .env --entrypoint "/travis-ci.sh" viktigpetterr/travis-scan
+          script: docker run -v $HOME:$HOME --env-file ./file.env --entrypoint "/travis-ci.sh" viktigpetterr/travis-scan
           
           #script: docker run -e DEBRICKED_TOKEN=${DEBRICKED_TOKEN} -e TRAVIS_REPO_SLUG="holaMundo~" -e TRAVIS_BRANCH="master"
           #  -e TRAVIS_COMMIT=${COMMIT} -e TRAVIS_BUILD_DIR="/repo" -v $(pwd):/repo --entrypoint "/travis-ci.sh" viktigpetterr/travis-scan

@@ -4,7 +4,7 @@ jobs:
     include:
         - stage: Debricked-scan
           on:
-            branch: master
+            branch: "*"
           env:
           -  DEBRICKED_TOKEN=${DEBRICKED_TOKEN}
           -  TRAVIS_BUILD_DIR="/repo"

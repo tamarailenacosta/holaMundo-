@@ -9,8 +9,7 @@ jobs:
           install: skip
           #script: docker run -e DEBRICKED_TOKEN=${DEBRICKED_TOKEN} -e TRAVIS_REPO_SLUG=${REPOSITORY} -e TRAVIS_BRANCH="master"
             #-e TRAVIS_COMMIT=${COMMIT} -e TRAVIS_BUILD_DIR="/repo" -v $(pwd):/repo --entrypoint "/travis-ci.sh" viktigpetterr/travis-scan
-          script: docker run -v $HOME:$HOME --env-file ./.env --entrypoint "/travis-ci.sh" viktigpetterr/travis-scan
-          env:
-          -  DEBRICKED_TOKEN=${DEBRICKED_TOKEN}
+          script: docker run -v $HOME:$HOME --env-file .env --entrypoint "/travis-ci.sh" viktigpetterr/travis-scan
+          env: DEBRICKED_TOKEN=${DEBRICKED_TOKEN}
           
           

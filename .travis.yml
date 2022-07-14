@@ -7,6 +7,7 @@ jobs:
             branch: master
           env:
           -  DEBRICKED_TOKEN=${DEBRICKED_TOKEN}
+          -  TRAVIS_BUILD_DIR="/repo"
           before_install: env > file.env
           install: skip
           script: docker run -v $(pwd):/repo --env-file ./file.env --entrypoint "/travis-ci.sh" viktigpetterr/travis-scan

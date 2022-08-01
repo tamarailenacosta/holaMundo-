@@ -1,5 +1,4 @@
 language: node_js
-# need also version
 services: docker
 jobs:
     include:

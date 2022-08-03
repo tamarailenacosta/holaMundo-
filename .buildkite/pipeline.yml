@@ -3,6 +3,14 @@ steps:
     command:
       - bash /buildkite.sh
     plugins:
+      - vj396/vault-secrets#v0.1.0:
+          image: 'vault' # optional. Defaults to https://hub.docker.com/_/vault
+          tag: "1.10.2" # optional. Defaults to 1.10.2
+          address: "http://vault-server:8200" # optional. plugin will error when VAULT_ADDR is also not in env.
+          token: "123ASda" # optional. plugin will error when VAULT_TOKEN is also not in env. 
+          env:
+            DEBRICKED_TOKEN: secret/TAMARAAILENACOSTAESTAESMICLAVE
+    plugins:
       - docker#v3.3.0:
           image: "debricked/debricked-scan"
           mount-buildkite-agent: true

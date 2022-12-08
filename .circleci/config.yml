@@ -6,5 +6,8 @@ jobs:
       - image: debricked/scan 
     steps:
       - checkout
-      - run: debricked scan
-
+      
+workflows:
+  debricked-scan:
+    jobs:
+      - scan

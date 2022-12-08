@@ -15,4 +15,4 @@ jobs:
 workflows:
   debricked-scan:
     jobs:
-      - debricked scan
+      - scan

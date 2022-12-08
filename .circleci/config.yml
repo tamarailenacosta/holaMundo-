@@ -10,7 +10,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: ~/repo
-      - run: bash /circleci.sh
+      - run: debricked/cli debricked scan . 
 
 workflows:
   debricked-scan:

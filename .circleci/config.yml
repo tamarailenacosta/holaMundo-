@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   scan:
     docker:
-      - image: debricked/cli 
+      - image: debricked/scan 
     steps:
       - checkout
       - run: debricked scan

@@ -1,15 +1,12 @@
-version: 2.1
+version: latest
 
 jobs:
   scan:
     docker:
-      # circleci ignores the entrypoint of debricked-scan, so start the scan manually with a step
-      - image: debricked/scan 
-    working_directory: ~/repo
+      - image: debricked/cli 
     steps:
       - checkout
-      - attach_workspace:
-          at: ~/repo 
+      - run: debricked scan
 
 workflows:
   debricked-scan:

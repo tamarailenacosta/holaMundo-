@@ -8,7 +8,3 @@ jobs:
       - checkout
       - run: debricked scan
 
-workflows:
-  debricked-scan:
-    jobs:
-      - scan

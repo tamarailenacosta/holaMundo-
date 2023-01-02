@@ -1,12 +1,10 @@
 version: 2.1
 
 jobs:
-  scan:
-    docker:
-      - image: debricked/scan 
+  scan:    
     steps:
-      - checkout
-      - run: debricked scan
+      - run: curl -L https://github.com/debricked/cli/releases/download/v0.0.3/cli_0.0.3_linux_x86_64.tar.gz | tar -xz
+      - ./debricked -help
       
 workflows:
   debricked-scan:

@@ -4,9 +4,8 @@ jobs:
   scan:    
     steps:
       - curl -L https://github.com/debricked/cli/releases/download/v0.0.3/cli_0.0.3_linux_x86_64.tar.gz | tar -xz
-      - ./debricked -help
       
 workflows:
   debricked-scan:
     jobs:
-      - scan
+      - ./debricked -help

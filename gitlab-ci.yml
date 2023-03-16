@@ -1,4 +1,5 @@
 stages:
+
   - scan
 debricked:
   stage: scan

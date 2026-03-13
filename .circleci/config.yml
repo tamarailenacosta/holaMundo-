@@ -8,7 +8,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
-      - run: debricked scan
+      - run: debricked scan --no-fingerprint=true
 
 workflows:
   debricked:

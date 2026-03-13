@@ -7,8 +7,8 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: .
-      - run: debricked scan --no-fingerprint=true debricked  -e "'**/src/**'" 
+          at:.
+      - run: debricked scan --no-fingerprint=true debricked  -e "**/src/**" 
       #(default [**/node_modules/**,**/vendor/**,**/.git/**,**/obj/**,**/bower_components/
 
 workflows:
